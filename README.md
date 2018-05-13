@@ -3,7 +3,7 @@
 Nginx alpine - Physical redirect
 
 This image based on nginx-alpine images launch nginx with a basic proxypass configuration witten on /etc/nginx/nginx.conf container file. it add following directive:
-``
+```
 	server {
 		listen       80;
 		server_name  ${SERVER_NAME};
@@ -11,7 +11,7 @@ This image based on nginx-alpine images launch nginx with a basic proxypass conf
 			proxy_pass         ${PROXY_PASS}/;
 		}
 	}
-``
+```
 # Usage
 ```
 docker run --name PhysicalHost-nginx-Proxypass -d
