@@ -1,10 +1,11 @@
 FROM nginx:alpine
 
-ENV SERVER_NAME=default
-ENV PROXY_PASS_ADDRESS=default
+ENV NGINX_CONF='/etc/nginx/nginx.conf'
 
-ADD ./start_nginx.sh /start_nginx.sh
+RUN apk add --no-cache inotify-tools
 
-RUN chmod +x /start_nginx.sh
+ADD ./entrypoint.sh /entrypoint.sh
 
-CMD /start_nginx.sh
+RUN chmod +x /entrypoint.sh
+
+CMD /entrypoint.sh
