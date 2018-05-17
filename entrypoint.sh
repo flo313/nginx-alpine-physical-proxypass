@@ -5,7 +5,7 @@ function ts {
 }
 if [ -e ${NGINX_CONF} ] ; then
 	echo "$(ts) Starting nginx server..."
-	nginx
+	nginx -c ${NGINX_CONF}
 
 	echo "$(ts) Starting inotifywait loocking for changes on ${NGINX_CONF}..."
 	while inotifywait -q -r -e close_write,moved_to,create ${NGINX_CONF}; do
