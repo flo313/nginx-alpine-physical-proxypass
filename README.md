@@ -2,20 +2,12 @@
 
 # Nginx alpine - Physical redirect
 
-This image based on nginx-alpine images launch nginx with a basic proxypass configuration witten on /etc/nginx/nginx.conf container file. it add following directive:
-```
-	server {
-		listen       80;
-		server_name  ${SERVER_NAME};
-		location / {
-			proxy_pass         ${PROXY_PASS}/;
-		}
-	}
-```
+This image based on nginx-alpine images launch nginx and then check for ${NGINX_CONF} changes using inotify. If changes are made, nginx is reloaded ${TIME_TO_UPDATE} seconds after.
 # Usage
 ```
 docker run --name PhysicalHost-nginx-Proxypass -d
-  -e SERVER_NAME=example.domain.com \
-  -e PROXY_PASS=http://X.X.X.X:80 \
+  -e NGINX_CONF=/etc/nginx/nginx.conf \
+  -e TIME_TO_UPDATE=5 \
+  -v /path/to/nginx.conf:/etc/nginx/nginx.conf
   flo313/nginx-alpine-physical-proxypass:latest
 ```
