@@ -5,7 +5,7 @@ function ts {
 }
 echo "$(ts) Starting nginx server..."
 if [ -e ${NGINX_CONF} ] ; then
-	nginx &
+	nginx -c ${NGINX_CONF}
 	echo "$(ts) Starting inotifywait loocking for changes on ${NGINX_CONF}..."
 	while inotifywait -q -r -e close_write,moved_to,create ${NGINX_CONF}; do
 	  echo "$(ts) Configuration changes detected. Will send reload signal to nginx in ${TIME_TO_UPDATE} seconds..."
