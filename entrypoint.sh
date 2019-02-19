@@ -13,5 +13,5 @@ if [ -e ${NGINX_CONF} ] ; then
 	  nginx -s reload && echo "$(ts) Reload signal send" && echo "$(ts) Loocking for another change on ${NGINX_CONF}"
 	done
 else
-	nginx -g "pid /tmp/nginx.pid; ledaemon off;"
+	nginx -g "pid /tmp/nginx.pid; daemon off;"
 fi
